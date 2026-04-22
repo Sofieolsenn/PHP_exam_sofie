@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# generic extensionless PHP routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+
+# STATIC
+RewriteRule ^app.css$ /static/app.css [NC,L]
+RewriteRule ^app.js$ /static/app.js [NC,L]
+RewriteRule ^mixhtml.js$ /static/mixhtml.js [NC,L]
+
+# VIEWS
+RewriteRule ^$ /views/page-index.php [NC,L]
+
+# API
+RewriteRule ^api-get-item/(.{1})$ /apis/api-get-item.php?key=$1 [NC,L]
+
+ErrorDocument 404 /views/page-404.php
+
